@@ -52,7 +52,7 @@ function geoCallback(position){
     console.log(position);
     
     var lat = position.coords.latitude;
-    var lon = position.coords.longitude;
+    var lng = position.coords.longitude;
 
     document.getElementById('position').innerHTML = "latitud: " +lat+ "<br> Longitud: " +lon;
 }
@@ -62,7 +62,8 @@ function onError(msg){
 }
 
 function initMap() {
-    var cct = {lat: 53.346, lng: -6.2588}; var map = new
+    var cct = new google.maps.LatLng(lat, lng); 
+    var map = new
     google.maps.Map(document.getElementById('map'), { zoom: 4,
     center: cct }
                    );
@@ -73,7 +74,7 @@ function initMap() {
 
     function openCage(){
         var http = new XMLHttpRequest(); 
-        const url = 'https://api.opencagedata.com/geocode/v1/json?q=53.34592+-6.2588&key=755279b995f349c1b6b507df27b7833d'; 
+        const url = 'https://api.opencagedata.com/geocode/v1/json?q=' +lat+ '+' +lng+ 'key=755279b995f349c1b6b507df27b7833d'; 
         http.open("GET", url); 
         http.send();
 
